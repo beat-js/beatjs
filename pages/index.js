@@ -1,8 +1,31 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
+import $ from 'jquery';
 
 export default function Home() {
+  $(document).on("ready", function(){
+
+    $(".bar").on("click", function(){
+      $(this).toggleClass("selected");
+    })
+  
+  
+    var barIndex = 0;
+  
+    $("#play").on("click", function(){
+  
+      $(".bar").eq(barIndex).removeClass("current");
+  
+      if(barIndex < 7)
+        barIndex++;
+      else
+        barIndex = 0;
+  
+      $(".bar").eq(barIndex).addClass("current");
+    })
+  
+  })
   return (
     <div className={styles.container}>
       <Head>
@@ -11,27 +34,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main>
+        <h1>
          Beat js
         </h1>
-
+        <div className="sequencer">
+          <div className="bars-row" id="row1">
+            <div className="bar current" id="row1-bar1"></div>
+            <div className="bar selected" id="row1-bar2"></div>
+            <div className="bar" id="row1-bar3"></div>
+            <div className="bar" id="row1-bar4"></div>
+            <div className="bar" id="row1-bar5"></div>
+            <div className="bar" id="row1-bar6"></div>
+            <div className="bar" id="row1-bar7"></div>
+            <div className="bar" id="row1-bar8"></div>
+          </div>
+        </div>
+        <button id="play">Play</button>
         
         
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      
     </div>
   )
 }
