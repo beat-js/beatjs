@@ -35,7 +35,7 @@ gulp.task('sass', function() {
 
 gulp.task('watch', function () {
     gulp.watch(['./html/*.html', './html/**/*.html'], gulp.series('fileinclude'));
-    gulp.watch(['./scss/*.scss'], gulp.series('sass'));
+    gulp.watch(['./styles/*.scss'], gulp.series('sass'));
 });
 
 // Default Task
