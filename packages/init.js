@@ -1,48 +1,185 @@
-import $ from 'jquery';
+"use strict";
 
-export default function init() {
-var barIndex = 0;
-var playLoop = false;
 
-function beep() {
-    var snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");  
-    snd.play();
+var durations = {
+	"whole": 240,
+	"half": 120,
+	"quarter": 60, // 960
+	"eighth": 30,
+	"sixteenth": 15,
 }
 
-function playStep() {
-	$(".bar").eq(barIndex).removeClass("current");
-
-	if(barIndex < 7)
-		barIndex++;
-	else
-		barIndex = 0;
-
-	$(".bar").eq(barIndex).addClass("current");
-
-	if($(".bar").eq(barIndex).hasClass("selected")){
-		beep();
-	}
-
+var intervals = {
+	measure: durations.whole,
+	beat: durations.quarter,
+	tick: durations.sixteenth
 }
-  $(document).on("ready", function(){
 
-    $(".bar").on("click", function(){
-      $(this).toggleClass("selected");
-    })
-  
-  
-    var barIndex = 0;
-  
-    $("#play").on("click", function(){
-  
-      $(".bar").eq(barIndex).removeClass("current");
-  
-      if(barIndex < 7)
-        barIndex++;
-      else
-        barIndex = 0;
-  
-      $(".bar").eq(barIndex).addClass("current");
-    })
-  
-  })}
+var tonesInOctave = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+
+var defaultSong = {
+	name: "Song 1",
+	bpm: 120,
+	bars: 128,
+	tracks: [
+		{
+			name: "Track 1",
+			type: "sequencer",
+			bars: 16,
+			channels: [
+				{
+					name: "Channel 0",
+					note: "K",
+					pattern: [1,0,0,0,0,0,0,0]
+				},
+				{
+					name: "Channel 1",
+					note: "H",
+					pattern: [0,0,1,0,0,0,1,0]
+				},
+				{
+					name: "Channel 2",
+					note: "S",
+					pattern: [0,0,0,0,1,0,0,0]
+				},
+				{
+					name: "Channel 3",
+					note: "C"
+				}
+			]
+		},
+		{
+			name: "Track 2",
+			type: "midi",
+			bars: 32,
+			events: [
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: 0,
+					duration: durations.quarter+durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: durations.quarter+durations.eighth,
+					duration: durations.quarter+durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: (durations.quarter+durations.eighth)*2,
+					duration: durations.quarter 
+				},
+				{ 
+					type: "noteon", 
+					note: "F",
+					start: durations.whole,
+					duration: durations.quarter+durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "F",
+					start: durations.whole+durations.quarter+durations.eighth,
+					duration: durations.quarter+durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "F",
+					start: durations.whole+(durations.quarter+durations.eighth)*2,
+					duration: durations.quarter 
+				},
+			]
+			/*events: [
+				{ 
+					type: "noteon", 
+					note: "C",
+					start: 0,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: durations.eighth,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "C",
+					start: durations.eighth*2,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: durations.eighth*3,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "G",
+					start: durations.eighth*4,
+					duration: durations.half 
+				},
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: durations.whole-durations.eighth,
+					duration: durations.eighth 
+				},
+				{
+					type: "noteon", 
+					note: "G",
+					start: durations.whole,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "G",
+					start: durations.whole+durations.eighth,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "F",
+					start: durations.whole+durations.eighth*2,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "F",
+					start: durations.whole+durations.eighth*3,
+					duration: durations.eighth 
+				},
+				{ 
+					type: "noteon", 
+					note: "E",
+					start: durations.whole+durations.eighth*4,
+					duration: durations.half 
+				}
+			]*/
+		}
+	],
+	arrangement: [
+		{
+			track: 0,
+			start: 0,
+			repeat: 8
+		},
+		{
+			track: 1,
+			start: 0,
+			repeat: 4
+		}
+	]
+}
+
+
+$(document).ready(function(){
+
+	var studio = new JSL.gui.Studio("body")
+
+	studio.load(defaultSong);
+
+	studio.init();
+})
