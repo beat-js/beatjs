@@ -4,10 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css"/>
     <title>Beat js - create beats or website music without using audio files</title>
 </head>
 <body>
-    <h1>
+  <div class="layout">
+    <div class="header">
+      <div class="logo">
+        <!-- <i class="fa fa-music"></i> -->
+        <span>Beatjs</span>
+      </div>
+      <div class="indicators">
+        <span>Bpm</span>
+        <input id="bpm" value="120"/>
+      </div>
+      <div class="controls">
+        <button id="play"><i class="fa fa-play"></i></button>
+        <button id="stop"><i class="fa fa-stop"></i></button>
+      </div>
+      <div class="file-operations">
+        <button type="link" id="save"><i class="fa fa-floppy"></i></button>
+        <input id="load-file" type="file"/>
+        <button id="load"><i class="fa fa-upload"></i></button>
+        <button id="clear"><i class="fa fa-trash"></i></button>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="instruments-pane">
+        <div class="section">
+          <div class="title">Instruments</div>
+          <ul class="entities">
+            <li>Sampler</li>
+            <li>Synth</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="workspace">
+      <div class="sequencer">
+        <div class="toolbar">
+          <div class="title">Sequencer</div>
+          <div class="prefs">
+            <span>Bar Count</span>
+            <input id="bar-count" value="16"/>
+          </div>
+        </div>
+        <div class="channels"></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- <h1>
         Beat js
        </h1>
        <div className="sequencer">
@@ -22,7 +69,7 @@
            <div className="bar" id="row1-bar8"></div>
          </div>
        </div>
-       <button id="play">Play</button>
+       <button id="play">Play</button> -->
        
        
 </body>
