@@ -1,6 +1,4 @@
-import $ from 'jquery';
 
-export default function init() {
 var barIndex = 0;
 var playLoop = false;
 
@@ -45,4 +43,4 @@ function playStep() {
       $(".bar").eq(barIndex).addClass("current");
     })
   
-  })}
+  })
