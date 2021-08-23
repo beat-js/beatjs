@@ -1,0 +1,330 @@
+@import url(http://fonts.googleapis.com/css?family=Play:400,700&subset=latin,cyrillic-ext,cyrillic);
+body {
+  font-family: "Play" Helvetica Arial sans-serif;
+  margin: 0px;
+  padding: 0px;
+  background: #333;
+  color: #ccc;
+}
+
+i.fa:first-child {
+  margin-right: 5px;
+}
+i.fa:last-child {
+  margin-right: 0px;
+}
+
+.layout .header {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 40px;
+  background: #ccc;
+  color: #3a3b3c;
+  border-top: 1px solid #777;
+  border-bottom: 3px solid #999;
+}
+.layout .header > * {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+}
+.layout .header > * > button {
+  display: inline-block;
+  margin: 0px 5px;
+  padding: 0px;
+  height: 25px;
+  line-height: 25px;
+  padding: 0px 10px;
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+  background: inherit;
+  position: relative;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+}
+.layout .header > * > button:hover {
+  background: #aaa;
+}
+.layout .header .logo {
+  margin: 0px 20px;
+  font-weight: bold;
+  font-size: 22px;
+}
+.layout .header .indicators {
+  height: 40px;
+  line-height: 40px;
+  padding: 0px;
+}
+.layout .header .indicators > * {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  margin: 0px 5px;
+  border-radius: 1px;
+}
+.layout .header .indicators input {
+  border: 0px;
+  outline: none;
+  background: #bbb;
+  width: 50px;
+  padding: 0px;
+  padding-left: 2px;
+  margin-top: -1px;
+}
+.layout .header .controls {
+  margin: 0px 20px;
+}
+.layout .header .controls #play.active {
+  color: #bd7;
+  background: #aaa;
+}
+.layout .header .file-operations {
+  float: right;
+  margin: 0px 10px;
+}
+.layout .header .file-operations #load-file {
+  display: none;
+}
+
+.layout .panel {
+  background: #3a3b3c;
+  color: #ccc;
+  position: absolute;
+  top: 44px;
+  left: 0px;
+  bottom: 0px;
+  width: 200px;
+  padding: 10px 0px;
+}
+.layout .panel > * {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+.layout .panel > *::-webkit-scrollbar {
+  width: 6px;
+  /* for vertical scrollbars */
+  height: 6px;
+  /* for horizontal scrollbars */
+}
+.layout .panel > *::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+.layout .panel > *::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}
+.layout .panel > * .section .title {
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px;
+  background: #888;
+  padding-left: 10px;
+  margin: 5px 0px;
+}
+.layout .panel > * .section .entities {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.layout .panel > * .section .entities li {
+  margin-left: 0px;
+  padding: 0px 25px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.layout .panel > * .section .entities li:hover {
+  background: #888;
+}
+.layout .panel > * .section .entities li.selected {
+  background: #777;
+}
+
+.layout .workspace {
+  position: absolute;
+  display: block;
+  left: 200px;
+  top: 44px;
+  right: 0px;
+  bottom: 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.layout .workspace > * {
+  position: absolute;
+  display: block;
+  background: #3a3b3c;
+  border: 1px solid #000;
+  min-width: 400px;
+}
+.layout .workspace > * .toolbar {
+  color: #aaa;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+}
+.layout .workspace > * .toolbar > * {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  height: 35px;
+  line-height: 35px;
+  float: left;
+}
+.layout .workspace > * .toolbar > * > button {
+  display: inline-block;
+  margin: 0px 2px;
+  height: 20px;
+  line-height: 20px;
+  padding: 0px 5px;
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+  background: inherit;
+  color: #777;
+  position: relative;
+  -webkit-transition: background 0.5s, color 0.5s;
+  transition: background 0.5s, color 0.5s;
+}
+.layout .workspace > * .toolbar > * > button:hover {
+  background: #2a2a2a;
+  color: #aaa;
+}
+.layout .workspace > * .toolbar > * > button.selected {
+  background: #2a2a2a;
+  color: #aaa;
+}
+.layout .workspace > * .toolbar .title {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0px 10px;
+}
+.layout .workspace > * .toolbar .prefs {
+  height: 35px;
+  line-height: 35px;
+}
+.layout .workspace > * .toolbar .prefs > * {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin: 0px 5px;
+  border-radius: 1px;
+}
+.layout .workspace > * .toolbar .prefs input {
+  border: 0px;
+  outline: none;
+  background: #999;
+  width: 50px;
+  padding: 0px;
+  padding-left: 2px;
+}
+.layout .workspace > * .toolbar .toolbar-controls {
+  margin-left: 20px;
+}
+
+.layout .workspace .sequencer {
+  left: 10;
+  top: 10;
+}
+.layout .workspace .sequencer .channels {
+  clear: both;
+  margin: 10px;
+}
+.layout .workspace .sequencer .channels .channel {
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  margin: 10px 0px;
+  padding: 0px;
+}
+.layout .workspace .sequencer .channels .channel > * {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin: 0px;
+  margin-right: 10px;
+  padding: 0px;
+  box-sizing: border-box;
+  float: left;
+}
+.layout .workspace .sequencer .channels .channel .channel-name {
+  color: #ccc;
+}
+.layout .workspace .sequencer .channels .channel .channel-note {
+  width: 40px;
+  border: 0px;
+  outline: none;
+  background: #999;
+  padding: 0px;
+  padding-left: 3px;
+}
+.layout .workspace .sequencer .channels .channel .bars .bar {
+  display: inline-block;
+  background: #454d4f;
+  border-radius: 3px;
+  width: 14px;
+  height: 20px;
+  margin: 0px 2px;
+  cursor: pointer;
+}
+.layout .workspace .sequencer .channels .channel .bars .bar.selected {
+  background: #b8bec1;
+}
+.layout .workspace .sequencer .channels .channel .bars .bar.current {
+  background: #a4aa64;
+}
+
+.layout .workspace .piano-roll {
+  left: 10;
+  top: 190;
+  min-width: 800px;
+  min-width: 800px;
+}
+.layout .workspace .piano-roll .view {
+  user-select: none;
+  height: 280px;
+  background: #1a1a1a;
+  margin: 5px;
+  margin-top: 0px;
+  position: relative;
+}
+.layout .workspace .piano-roll .view > canvas {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+.layout .workspace .piano-roll .view > canvas.grid {
+  z-index: 100;
+}
+.layout .workspace .piano-roll .view > canvas.elements {
+  z-index: 101;
+}
+.layout .workspace .piano-roll .view > canvas.selection {
+  z-index: 102;
+}
+.layout .workspace .piano-roll .view > canvas.indicators {
+  z-index: 103;
+}
+.layout .workspace .piano-roll .view > canvas.interaction {
+  z-index: 104;
+}
